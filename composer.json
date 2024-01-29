@@ -1,0 +1,35 @@
+{
+    "name": "inmanturbo/b2bsaas",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Inmanturbo\\B2bSaas\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\": "stubs/app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "inmanturbo"
+        }
+    ],
+    "require": {
+        "laravel/jetstream": "^4.2",
+        "livewire/volt": "^1.6",
+        "laravel/folio": "^1.1",
+        "laravel/sanctum": "^3.3"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Inmanturbo\\B2bSaas\\B2bSaasServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

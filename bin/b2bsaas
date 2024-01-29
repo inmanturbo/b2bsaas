@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cp -r vendor/bin/inmanturbo/b2bsaas/stubs/* app/
