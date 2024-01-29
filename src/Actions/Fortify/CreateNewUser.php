@@ -95,7 +95,7 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Create a personal team for the user.
      */
-    protected function createTeam(User $user, string $teamDatabaseDriver = null): Team
+    protected function createTeam(User $user, ?string $teamDatabaseDriver = null): Team
     {
 
         $team = new Team([

@@ -51,7 +51,7 @@ class CreateTeam implements CreatesTeams
         return $team;
     }
 
-    protected function createTeamForUser($user, array $teamData, string $teamDatbaseDriver = null): Team
+    protected function createTeamForUser($user, array $teamData, ?string $teamDatbaseDriver = null): Team
     {
 
         $teamData = array_merge($teamData, [

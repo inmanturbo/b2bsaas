@@ -26,7 +26,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -52,7 +52,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        //
+        return $this->updateUserType($user);
     }
 
     /**
@@ -78,13 +78,12 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        //
+        return $this->updateUserType($user);
     }
 
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function updateTeam(User $user)
@@ -119,7 +118,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        //
+        return $this->updateUserType($user) || $model->id === $user->id;
     }
 
     /**
@@ -129,7 +128,7 @@ class UserPolicy
      */
     public function restore(User $user, User $model)
     {
-        //
+        return false;
     }
 
     /**
@@ -139,6 +138,6 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model)
     {
-        //
+        return false;
     }
 }

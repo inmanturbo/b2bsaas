@@ -47,7 +47,7 @@ trait HasTeamDatabase
         return $this->belongsTo(TeamDatabase::class);
     }
 
-    protected function createTeamDatabase(TeamDatabaseType $connectionTemplate = null): TeamDatabase
+    protected function createTeamDatabase(?TeamDatabaseType $connectionTemplate = null): TeamDatabase
     {
 
         if (! $connectionTemplate) {

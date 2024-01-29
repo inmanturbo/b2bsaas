@@ -5,6 +5,7 @@ namespace Inmanturbo\B2bSaas;
 use App\Models\Team;
 use Illuminate\Queue\Events\JobProcessing;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\URL;
 use Inmanturbo\B2bSaas\Actions\Fortify\CreateNewUser;
 use Inmanturbo\B2bSaas\Actions\Fortify\UpdateUserProfileInformation;
 use Inmanturbo\B2bSaas\Actions\Jetstream\AddTeamMember;
@@ -16,7 +17,6 @@ use Livewire\Volt\Volt;
 
 class B2bSaasServiceProvider extends \Illuminate\Support\ServiceProvider
 {
-
     public function register()
     {
 
@@ -26,10 +26,23 @@ class B2bSaasServiceProvider extends \Illuminate\Support\ServiceProvider
             __DIR__.'/../config/b2bsaas.php',
             'b2bsaas'
         );
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/database.php',
+            'database'
+        );
     }
 
     public function boot()
     {
+
+        $this->publishes([
+            __DIR__.'/../config/b2bsaas.php' => config_path('b2bsaas.php'),
+        ], 'b2bsaas-config');
+
+        $this->publishes([
+            __DIR__.'/../config/database.php' => config_path('database.php'),
+        ], 'b2bsaas-database');
 
         $this->configureRequests();
 
@@ -39,7 +52,7 @@ class B2bSaasServiceProvider extends \Illuminate\Support\ServiceProvider
 
         //if the config('app.url_scheme') is set to https, then we will force the scheme to be https
         if (config('b2bsaas.url_scheme') === 'https') {
-            \URL::forceScheme('https');
+            URL::forceScheme('https');
         }
 
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');

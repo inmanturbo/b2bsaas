@@ -10,6 +10,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Artisan;
 
+/**
+ * @property int $id
+ * @property int $user_id
+ * @property string $connection_template
+ * @property string $name
+ */
 class TeamDatabase extends Model
 {
     use HasChildren;
