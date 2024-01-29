@@ -20,8 +20,6 @@ class B2bSaasServiceProvider extends \Illuminate\Support\ServiceProvider
     public function register()
     {
 
-        Sanctum::ignoreMigrations();
-
         $this->mergeConfigFrom(
             __DIR__.'/../config/b2bsaas.php',
             'b2bsaas'
@@ -71,10 +69,16 @@ class B2bSaasServiceProvider extends \Illuminate\Support\ServiceProvider
             Fortify::createUsersUsing(CreateNewUser::class);
             Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
 
-            Volt::mount([
+            $voltPaths = collect(Volt::paths())->map(function ($path) {
+                return $path->path;
+            })->toArray();
+    
+            $paths = array_merge($voltPaths, [
                 __DIR__.'/../resources/views/livewire',
                 __DIR__.'/../resources/views/pages',
             ]);
+    
+            Volt::mount($paths);
         });
 
     }

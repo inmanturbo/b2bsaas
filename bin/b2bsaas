@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
-cp -r vendor/bin/inmanturbo/b2bsaas/stubs/app .
-cp -r vendor/bin/inmanturbo/b2bsaas/database .
+cp -r vendor/inmanturbo/b2bsaas/stubs/app .
+cp -r vendor/inmanturbo/b2bsaas/stubs/resources .
+cp -r vendor/inmanturbo/b2bsaas/database .
+cp -r vendor/inmanturbo/b2bsaas/config/database.php config
