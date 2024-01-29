@@ -2,6 +2,14 @@
     "name": "inmanturbo/b2bsaas",
     "type": "library",
     "license": "MIT",
+    "description": "B2B SaaS boilerplate for Laravel",
+    "keywords": [
+        "laravel",
+        "b2b",
+        "saas",
+        "boilerplate"
+    ],
+    "bin": "bin/b2bsaas",
     "autoload": {
         "psr-4": {
             "Inmanturbo\\B2bSaas\\": "src/"
