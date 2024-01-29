@@ -59,6 +59,7 @@ class B2bSaasServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->booted(function () {
             /** @var Router $router */
             $router = $this->app['router'];
+            $router->pushMiddlewareToGroup('web', TeamMiddleware::class);
             $router->pushMiddlewareToGroup('web', NavigationMiddleware::class);
 
             Jetstream::inviteTeamMembersUsing(InviteTeamMember::class);
