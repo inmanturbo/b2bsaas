@@ -31,10 +31,10 @@
 
             @livewire('update-team-contact-info-form', ['team' => $team])
 
+            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <x-section-border />
-            
-            @livewire('update-team-landing-page-form', ['team' => $team])
-
+                @livewire('update-team-landing-page-form', ['team' => $team])
+            @endif
 
             @livewire('teams.team-member-manager', ['team' => $team])
 

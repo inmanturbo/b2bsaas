@@ -139,14 +139,14 @@ $deleteLandingPage = function () {
     </x-slot>
 
     <x-slot name="actions">
-        @if(Gate::check('update', $this->team))
-        <x-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
-        </x-action-message>
+        @if(Laravel\Jetstream\Jetstream::managesProfilePhotos() && Gate::check('update', $this->team))
+            <x-action-message class="mr-3" on="saved">
+                {{ __('Saved.') }}
+            </x-action-message>
 
-        <x-button wire:loading.attr="disabled" wire:target="page">
-            {{ __('Save') }}
-        </x-button>
+            <x-button wire:loading.attr="disabled" wire:target="page">
+                {{ __('Save') }}
+            </x-button>
         @endif
     </x-slot>
 </x-form-section>
