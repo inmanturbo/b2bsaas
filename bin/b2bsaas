@@ -6,3 +6,7 @@ cp -r vendor/inmanturbo/b2bsaas/stubs/resources .
 cp -r vendor/inmanturbo/b2bsaas/database .
 cp -r vendor/inmanturbo/b2bsaas/config/database.php config
 cp -r vendor/inmanturbo/b2bsaas/config/auth.php config
+cp -r vendor/inmanturbo/b2bsaas/config/queue.php config
+echo "" >> .env
+echo "DB_CACHE_CONNECTION=landlord_sqlite" >> .env
+echo "SESSION_CONNECTION=landlord_sqlite" >> .env
