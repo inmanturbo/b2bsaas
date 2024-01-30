@@ -52,7 +52,7 @@ trait ConfiguresTenant
 
         if (isset(app()['team']) && app()['team']->uuid === $this->uuid) {
             app()->forgetInstance('team');
-            if (request()->user()->teams->count() > 0) {
+            if (request()->user()?->teams?->count() > 0) {
                 //switch to the first team
                 request()->user()->switchTeam(request()->user()->teams?->first());
                 request()->user()->teams?->first()?->use();
