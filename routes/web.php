@@ -4,6 +4,7 @@
 
 use App\Models\Team;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Inmanturbo\B2bSaas\CurrentTeamController;
 
 Route::put('/current-team', [CurrentTeamController::class, 'update'])->name('current-team.update')->middleware([
