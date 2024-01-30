@@ -56,7 +56,7 @@ class TeamDatabase extends Model
                 $model->user_id = auth()->id() ?? 1;
             }
             // if not running tests
-            if (! app()->runningUnitTests() && ! config('b2bsaas.database_creation_disabled')) {
+            if (! app()->runningUnitTests() && config('b2bsaas.features.create_team_databases')) {
                 $model->createTeamDatabase()
                     ->migrate();
 

@@ -14,28 +14,28 @@
     <div>
         <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
 
-            @if (Gate::check('updateTeamDatabase', $team ))
+            @if (Gate::check('updateTeamDatabase', $team ) && config('b2bsaas.features.create_team_databases'))
                 @livewire('update-team-database-form', ['team' => $team])
                 <x-section-border />
             @endif
 
-
             @livewire('teams.update-team-name-form', ['team' => $team])
             
-            <x-section-border />
-
-            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                @livewire('update-team-profile-info-form', ['team' => $team])
+            @if (config('b2bsaas.features.team_logos'))
                 <x-section-border />
+                @livewire('update-team-profile-info-form', ['team' => $team])
             @endif
 
-            @livewire('update-team-contact-info-form', ['team' => $team])
+            @if (config('b2bsaas.features.team_contact_info'))
+                <x-section-border />
+                @livewire('update-team-contact-info-form', ['team' => $team])
+            @endif
 
-            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-            <x-section-border />
+            @if (config('b2bsaas.features.team_landing_page'))
+                <x-section-border />
                 @livewire('update-team-landing-page-form', ['team' => $team])
             @endif
-
+            
             @livewire('teams.team-member-manager', ['team' => $team])
 
             @if (Gate::check('delete', $team) && ! $team->personal_team)

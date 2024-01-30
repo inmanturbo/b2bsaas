@@ -73,12 +73,12 @@ class B2bSaasServiceProvider extends \Illuminate\Support\ServiceProvider
             $voltPaths = collect(Volt::paths())->map(function ($path) {
                 return $path->path;
             })->toArray();
-    
+
             $paths = array_merge($voltPaths, [
                 __DIR__.'/../resources/views/livewire',
                 __DIR__.'/../resources/views/pages',
             ]);
-    
+
             Volt::mount($paths);
         });
 

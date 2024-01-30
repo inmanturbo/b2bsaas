@@ -17,7 +17,7 @@ trait HasContactData
         );
     }
 
-    public function getContactData($value, $attributes)
+    public function getContactData($value, $attributes): ?ContactData
     {
         $companyData = json_decode($attributes['contact_data'] ?? '', true);
 

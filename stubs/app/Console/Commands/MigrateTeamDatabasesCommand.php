@@ -41,11 +41,13 @@ class MigrateTeamDatabasesCommand extends Command
             $this->migrate(
                 $database = TeamDatabase::whereName($this->argument('teamDatabaseName'))->firstOrFail()
             );
+
             return 0;
         } else {
             TeamDatabase::all()->each(
                 fn ($db) => $this->migrate($db)
             );
+
             return 0;
         }
     }

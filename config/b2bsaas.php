@@ -10,9 +10,17 @@ return [
 
     'features' => [
         'invitation_only' => env('B2BSAAS_INVITATION_ONLY', true),
+        'create_team_databases' => env('B2BSAAS_CREATE_TEAM_DATABASES', true),
+        'team_logos' => env('B2BSAAS_TEAM_LOGOS', false),
+        'team_contact_info' => env('B2BSAAS_TEAM_CONTACT_INFO', false),
+        'team_landing_page' => env('B2BSAAS_TEAM_LANDING_PAGE', false),
     ],
 
-    'database_creation_disabled' => env('B2BSAAS_DATABASE_CREATION_DISABLED', false),
+    /**
+     * The name of the database connection to use for the team databases.
+     * This is only needed if the create_team_databases feature is disabled.
+     */
+    'team_database' => env('B2BSAAS_TEAM_DATABASE'),
 
     'company' => [
         'empty_logo_path' => 'profile-photos/no_image.jpg',

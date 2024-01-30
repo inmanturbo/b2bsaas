@@ -5,7 +5,6 @@ namespace Inmanturbo\B2bSaas;
 use App\TeamDatabaseType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 trait HasTeamDatabase
@@ -31,7 +30,9 @@ trait HasTeamDatabase
     protected function getDefaultTeamDatabaseDriverName(): string
     {
 
-        $column = collect(Schema::connection($this->getConnectionName())->getColumns('team_databases'))->firstWhere('name', 'connection_template');
+        $column = collect(Schema::connection($this->getConnectionName())
+            ->getColumns('team_databases'))
+            ->firstWhere('name', 'connection_template');
 
         $driver = $column['default'];
 

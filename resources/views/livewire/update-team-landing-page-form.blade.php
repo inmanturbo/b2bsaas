@@ -68,7 +68,6 @@ $deleteLandingPage = function () {
 
     <x-slot name="form">
         <!-- Profile Photo -->
-        @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div x-data="{pageName: null, pagePreview: null}" class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
                 @if(Gate::allows('update', $this->team))
@@ -83,7 +82,6 @@ $deleteLandingPage = function () {
                                     };
                                     reader.readAsDataURL($refs.page.files[0]);
                             " />
-                @endif
 
                 <x-label for="landing_page" value="{{ __('Landing Page') }}" />
                 <div class="">
@@ -91,7 +89,7 @@ $deleteLandingPage = function () {
                     <!-- Current Profile Photo -->
                     <div class="mt-2" x-show="! pagePreview">
                         <iframe 
-                            src="{{ $this->team->landing_page_url }}" 
+                            src="{{ $this->team?->landing_page_url }}" 
                             alt="{{ $this->team->name }}" 
                             class="w-full h-screen"
                             ></iframe>
@@ -123,10 +121,6 @@ $deleteLandingPage = function () {
                     </x-secondary-button>
                     @endif
                     
-                    {{-- <x-secondary-button-link class="mt-2 mr-2" target="_blank" href="/template">
-                        <span>Template</span>
-                    </x-secondary-button-link> --}}
-
                     <x-secondary-button-link class="mt-2" target="_blank" href="{{ $this->team->url }}">
                         <span>Visit</span>
                     </x-secondary-button-link>
@@ -139,7 +133,7 @@ $deleteLandingPage = function () {
     </x-slot>
 
     <x-slot name="actions">
-        @if(Laravel\Jetstream\Jetstream::managesProfilePhotos() && Gate::check('update', $this->team))
+        @if(Gate::check('update', $this->team))
             <x-action-message class="mr-3" on="saved">
                 {{ __('Saved.') }}
             </x-action-message>

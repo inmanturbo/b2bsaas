@@ -13,7 +13,6 @@ class TeamDatabasePolicy
     /**
      * Determine if the given user can use the given database.
      *
-     * @param  \App\Models\User|\App\Models\SuperAdmin|\App\Models\UpgradedUser  $user
      * @return bool
      */
     public function use(\App\Models\User|\App\Models\SuperAdmin|\App\Models\UpgradedUser $user, TeamDatabase $teamDatabase)

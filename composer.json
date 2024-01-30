@@ -43,7 +43,6 @@
         "livewire/volt": "^1.6",
         "laravel/folio": "^1.1",
         "spatie/laravel-navigation": "^1.2",
-        "spatie/laravel-data": "@dev",
         "spatie/php-structure-discoverer": "@dev"
     },
     "extra": {
