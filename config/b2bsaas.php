@@ -6,7 +6,12 @@ return [
 
     'url_scheme' => env('APP_URL_SCHEME', 'http'),
 
-    'default_team_database_connection_template' => env('DEFAULT_TEAM_DATABASE_CONNECTION_TEMPLATE', \App\TeamDatabaseType::tenant_sqlite->name),
+    'default_team_database_connection_template' => env(
+        'DEFAULT_TEAM_DATABASE_CONNECTION_TEMPLATE', 
+        class_exists('\App\TeamDatabaseType')
+        ? \App\TeamDatabaseType::tenant_sqlite->name
+        : 'tenant_sqlite'
+    ),
 
     'features' => [
         'invitation_only' => env('B2BSAAS_INVITATION_ONLY', true),
