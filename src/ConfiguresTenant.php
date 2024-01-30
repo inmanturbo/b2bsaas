@@ -20,7 +20,6 @@ trait ConfiguresTenant
             'b2bsaas.company.email' => $this->contact_data?->email(),
         ]);
 
-        // if not running unit tests
         if (! app()->runningUnitTests()) {
             $this->teamDatabase->configure();
         }
