@@ -54,8 +54,8 @@ trait ConfiguresTenant
             app()->forgetInstance('team');
             if (request()->user()?->teams?->count() > 0) {
                 //switch to the first team
-                request()->user()->switchTeam(request()->user()->teams?->first());
-                request()->user()->teams?->first()?->use();
+                request()->user()?->switchTeam(request()->user()->teams?->first());
+                request()->user()?->teams?->first()?->use();
             }
         }
     }
