@@ -29,6 +29,11 @@ class B2bSaasServiceProvider extends \Illuminate\Support\ServiceProvider
             __DIR__.'/../config/database.php',
             'database'
         );
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/auth.php',
+            'auth'
+        );
     }
 
     public function boot()
