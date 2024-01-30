@@ -1,6 +1,6 @@
-# Work In Progress
+# B2bSaas
 
-package being built from <https://github.com/inmantubo/b2bsaas0>
+originally a template: <https://github.com/inmantubo/b2bsaas0>
 
 ## Installation
 
