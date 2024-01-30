@@ -42,8 +42,7 @@
         "laravel/jetstream": "^5.0@dev",
         "livewire/volt": "^1.6",
         "laravel/folio": "^1.1",
-        "spatie/laravel-navigation": "^1.2",
-        "spatie/php-structure-discoverer": "@dev"
+        "spatie/laravel-navigation": "^1.2"
     },
     "extra": {
         "laravel": {
