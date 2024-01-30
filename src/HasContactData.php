@@ -13,12 +13,17 @@ trait HasContactData
     {
         return new Attribute(
             get: fn ($value, $attributes) => $this->getContactData($value, $attributes),
-            set: fn ($value, $attributes) => json_encode($value),
+            set: fn ($value, $attributes) => config('b2bsaas.features.team_contact_info') ? json_encode($value) : null,
         );
     }
 
     public function getContactData($value, $attributes): ?ContactData
     {
+
+        if (!config('b2bsaas.features.team_contact_info')) {
+            return null;
+        }
+
         $companyData = json_decode($attributes['contact_data'] ?? '', true);
 
         $address = new AddressData(
