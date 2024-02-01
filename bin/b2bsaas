@@ -7,6 +7,24 @@ cp -r vendor/inmanturbo/b2bsaas/database .
 cp -r vendor/inmanturbo/b2bsaas/config/database.php config
 cp -r vendor/inmanturbo/b2bsaas/config/auth.php config
 cp -r vendor/inmanturbo/b2bsaas/config/queue.php config
-echo "" >> .env
-echo "DB_CACHE_CONNECTION=landlord_sqlite" >> .env
-echo "SESSION_CONNECTION=landlord_sqlite" >> .env
+
+echo '# # b2bsaas configurations' >> .env
+echo '' >> .env
+echo '# B2BSAAS_TEAM_LOGOS=true' >> .env
+echo '# B2BSAAS_TEAM_CONTACT_INFO=true' >> .env
+echo '# B2BSAAS_TEAM_LANDING_PAGE=true' >> .env
+echo '' >> .env
+echo '' >> .env
+echo 'DB_CACHE_CONNECTION=landlord_sqlite' >> .env
+echo 'SESSION_CONNECTION=landlord_sqlite' >> .env
+
+echo '' >> .env.example
+echo '# # b2bsaas configurations' >> .env.example
+echo '' >> .env.example
+echo '# B2BSAAS_TEAM_LOGOS=true' >> .env.example
+echo '# B2BSAAS_TEAM_CONTACT_INFO=true' >> .env.example
+echo '# B2BSAAS_TEAM_LANDING_PAGE=true' >> .env.example
+echo '' >> .env.example
+echo '' >> .env.example
+echo 'DB_CACHE_CONNECTION=landlord_sqlite' >> .env.example
+echo 'SESSION_CONNECTION=landlord_sqlite' >> .env.example
