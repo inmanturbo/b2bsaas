@@ -1,6 +1,6 @@
 # B2bSaas
 
-originally a template: <https://github.com/inmantubo/b2bsaas0>
+originally a template: <https://github.com/inmanturbo/b2bsaas0>
 
 ## Installation
 
