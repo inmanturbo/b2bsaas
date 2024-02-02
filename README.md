@@ -1,5 +1,9 @@
 # B2bSaas
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/inmanturbo/b2bsaas.svg?style=flat-square)](https://packagist.org/packages/inmanturbo/b2bsaas)
+
+[![Total Downloads](https://img.shields.io/packagist/dt/inmanturbo/b2bsaas.svg?style=flat-square)](https://packagist.org/packages/inmanturbo/b2bsaas)
+
 originally a template: <https://github.com/inmanturbo/b2bsaas0>
 
 ## Installation
