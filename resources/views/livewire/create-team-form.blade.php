@@ -54,20 +54,21 @@ $createTeam = function(CreatesTeams $creator) {
                     </div>
                 </div>
             </div>
-            
-            <div class="col-span-6 sm:col-span-4">
-                <x-label for="name" value="{{ __('Database') }}" />
-                <x-select id="name" type="text" class="block w-full mt-1" wire:model="state.team_database_uuid" autofocus>
-                    <option selected></option>
-                    @foreach ($this->teamDatabases as $teamDatabase)
-                    <option value="{{ $teamDatabase->uuid }}">{{ $teamDatabase->name }}</option>
-                    @endforeach
-                </x-select>
-                <x-form-help-text for="name" class="mt-2">
-                    {{ __('Leave blank to create a fresh database for your new team.') }}
-                </x-form-help-text>
-                <x-input-error for="name" class="mt-2" />
-            </div>
+            @if (config('b2bsaas.features.create_team_databases'))
+                <div class="col-span-6 sm:col-span-4">
+                    <x-label for="name" value="{{ __('Database') }}" />
+                    <x-select id="name" type="text" class="block w-full mt-1" wire:model="state.team_database_uuid" autofocus>
+                        <option selected></option>
+                        @foreach ($this->teamDatabases as $teamDatabase)
+                        <option value="{{ $teamDatabase->uuid }}">{{ $teamDatabase->name }}</option>
+                        @endforeach
+                    </x-select>
+                    <x-form-help-text for="name" class="mt-2">
+                        {{ __('Leave blank to create a fresh database for your new team.') }}
+                    </x-form-help-text>
+                    <x-input-error for="name" class="mt-2" />
+                </div>
+            @endif
             
             <div class="col-span-6 sm:col-span-4">
                 <x-label for="name" value="{{ __('Team Name') }}" />
