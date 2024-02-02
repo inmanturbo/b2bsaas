@@ -16,12 +16,16 @@ echo '# B2BSAAS_TEAM_LOGOS=true' >> .env
 echo '# B2BSAAS_TEAM_CONTACT_INFO=true' >> .env
 echo '# B2BSAAS_TEAM_LANDING_PAGE=true' >> .env
 echo '# B2BSAAS_TEAM_LANDING_PAGE=true' >> .env
+echo '' >> .env
+echo '# # uncomment to force all teams to use the same database' >> .env
+echo '# DB_CONNECTION=tenant_sqlite' >> .env
 echo '# B2BSAAS_CREATE_TEAM_DATABASES=false' >> .env
 echo '# B2BSAAS_TEAM_DATABASE=teams.sqlite' >> .env
 echo '' >> .env
 echo '' >> .env
 echo 'DB_CACHE_CONNECTION=landlord_sqlite' >> .env
 echo 'SESSION_CONNECTION=landlord_sqlite' >> .env
+echo '# LANDLORD_DB_CONNECTION=landlord_sqlite' >> .env
 
 echo '' >> .env.example
 echo '# # b2bsaas configurations' >> .env.example

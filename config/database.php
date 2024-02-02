@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'tenant_connection'),
+    'default' => env('DB_CONNECTION', 'tenant_sqlite'),
     'landlord' => env('LANDLORD_DB_CONNECTION', 'landlord_sqlite'),
 
     /*
