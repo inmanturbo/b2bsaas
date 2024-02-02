@@ -9,6 +9,7 @@ cp -r vendor/inmanturbo/b2bsaas/config/auth.php config
 cp -r vendor/inmanturbo/b2bsaas/config/queue.php config
 touch database/teams.sqlite
 
+echo '' >> .env
 echo '# # b2bsaas configurations' >> .env
 echo '' >> .env
 echo '# B2BSAAS_TEAM_LOGOS=true' >> .env
