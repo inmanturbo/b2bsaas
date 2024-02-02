@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 /*
@@ -17,10 +18,15 @@ use Tests\TestCase;
 uses(TestCase::class)
     ->beforeEach(function () {
 
+        Storage::fake();
+
         config(['database.default' => 'testing_tenant']);
         config(['database.landlord' => 'testing_landlord']);
 
         Artisan::call('migrate:fresh --database=testing_landlord --path=database/migrations/landlord');
+    })
+    ->afterEach(function () {
+        Storage::fake();
     })
     ->in('Feature');
 

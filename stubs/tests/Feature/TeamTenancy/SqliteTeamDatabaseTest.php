@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Inmanturbo\B2bSaas\SqliteTeamDatabase;
 
 it('creates and deletes an sqlite database', function () {
@@ -11,12 +12,9 @@ it('creates and deletes an sqlite database', function () {
         'name' => 'test',
     ]);
 
-    $this->assertFileExists(storage_path('app/'.$user->uuid.'/'.$database->name.'.sqlite'));
+    $this->assertFileExists(Storage::disk('local')->path($user->uuid.'/'.$database->name.'.sqlite'));
 
     $database->delete();
 
-    $this->assertFileDoesNotExist(storage_path('app/'.$user->uuid.'/'.$database->name.'.sqlite'));
-
-    // cleanup
-    Storage::disk('local')->deleteDirectory($user->uuid);
+    $this->assertFileDoesNotExist(Storage::disk('local')->path($user->uuid.'/'.$database->name.'.sqlite'));
 });

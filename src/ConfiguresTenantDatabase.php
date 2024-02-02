@@ -46,7 +46,7 @@ trait ConfiguresTenantDatabase
         }
         $databaseConfig = [];
 
-        if (! config('b2bsaas.database_creation_disabled') && ! app()->runningUnitTests()) {
+        if (config('b2bsaas.features.create_team_databases') && ! app()->runningUnitTests()) {
             $databaseConfig['database'] = $this->getTenantConnectionDatabaseName();
         }
 

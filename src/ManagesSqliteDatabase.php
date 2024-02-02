@@ -2,7 +2,6 @@
 
 namespace Inmanturbo\B2bSaas;
 
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
 trait ManagesSqliteDatabase
@@ -19,13 +18,14 @@ trait ManagesSqliteDatabase
 
         $userUuid = (string) $this->user->uuid;
 
-        // create storage directory for user if it doesn't exist
-        if (! file_exists(storage_path('app/'.$userUuid))) {
-            mkdir(storage_path('app/'.$userUuid));
+        // create storage directory for user if it doesn't exist using storage facade
+
+        if(! Storage::disk('local')->exists($userUuid)) {
+            Storage::disk('local')->makeDirectory($userUuid);
         }
 
-        if (! file_exists(storage_path('app/'.$userUuid.'/'.$name.'.sqlite'))) {
-            Storage::disk('local')->put($userUuid.'/'.$name.'.sqlite', '');
+        if(! Storage::disk('local')->exists($this->getRelativePath())) {
+            Storage::disk('local')->put($this->getRelativePath(), '');
         }
 
         return $this;
@@ -33,37 +33,27 @@ trait ManagesSqliteDatabase
 
     protected function deleteTeamDatabase()
     {
-        $name = (string) str()->of($this->name)->slug('_');
-
-        $userUuid = (string) $this->user->uuid;
-
-        if (file_exists($file = storage_path('app/'.$userUuid.'/'.$name.'.sqlite'))) {
-            unlink($file);
+        if($this->teamDatabaseExists()) {
+            Storage::disk('local')->delete($this->getRelativePath());
         }
     }
 
     protected function teamDatabaseExists(bool $testing = false): bool
     {
-        $name = (string) str()->of($this->name)->slug('_');
-
-        $userUuid = (string) $this->user->uuid;
-
-        return file_exists($file = storage_path('app/'.$userUuid.'/'.$name.'.sqlite'));
-    }
-
-    protected function handleMigration()
-    {
-        Artisan::call('migrate', [
-            '--force' => true,
-        ]);
+        return Storage::disk('local')->exists($this->getRelativePath());
     }
 
     protected function getTenantConnectionDatabaseName(): string
     {
+        return Storage::disk('local')->path($this->getRelativePath());
+    }
+
+    public function getRelativePath(): string
+    {
         $name = (string) str()->of($this->name)->slug('_');
 
         $userUuid = (string) $this->user->uuid;
 
-        return storage_path('app/'.$userUuid.'/'.$name.'.sqlite');
+        return $userUuid.'/'.$name.'.sqlite';
     }
 }
