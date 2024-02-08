@@ -24,28 +24,28 @@ trait InteractsWithSystemDatabase
         $this->restoreOriginalConnection();
     }
 
-    protected function createTeamDatabase(bool $testing = false): self
+    protected function createTeamDatabase(): self
     {
         $name = (string) str()->of($this->name)->slug('_');
 
-        if ($this->teamDatabaseExists(testing: $testing)) {
+        if ($this->teamDatabaseExists()) {
             $name = $name.'_1';
             $this->name = $name;
-            $this->createTeamDatabase(testing: $testing);
+            $this->createTeamDatabase();
         }
 
-        if (! $testing) {
+        if (! app()->runningUnitTests() && config('b2bsaas.features.create_team_databases')){
             DB::connection($this->getSystemDatabaseConnectionName())->statement('CREATE DATABASE IF NOT EXISTS tenant_'.$name);
         }
 
         return $this;
     }
 
-    protected function teamDatabaseExists(bool $testing = false): bool
+    protected function teamDatabaseExists(): bool
     {
         $this->prepareTenantConnection($this->getSystemDatabaseConnectionName());
 
-        if ($testing) {
+        if (app()->runningUnitTests()){
             $this->restoreOriginalConnection();
 
             return false;
